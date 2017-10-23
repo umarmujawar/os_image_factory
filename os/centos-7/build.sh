@@ -37,6 +37,11 @@ sed -i "s/name: centos/name: cloud/" $TMP_DIR/etc/cloud/cloud.cfg
 echo "sed -i \"s/- resizefs/- resolv-conf/\" $TMP_DIR/etc/cloud/cloud.cfg"
 sed -i "s/- resizefs/- resolv-conf/" $TMP_DIR/etc/cloud/cloud.cfg
 
+# Added by Yogesh Raheja and Gagandeep Singh to Rectify JIRA 139867
+echo "sed -i \"s/echo/- echo/g\" $TMP_DIR/etc/cloud/cloud.cfg"
+sed -i "s/echo/- echo/g" $TMP_DIR/etc/cloud/cloud.cfg
+
+
 if [ ! -d "$TMP_DIR/etc/cloud/cloud.cfg.d" ]; then
     mkdir $TMP_DIR/etc/cloud/cloud.cfg.d
 fi
