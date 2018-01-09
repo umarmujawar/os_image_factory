@@ -3,6 +3,12 @@
   become: yes
 
   tasks:
+    - name: Ifconfig output
+      shell: ifconfig -a; ping -c2 localhost
+      register: netout
+      
+    - name: Debug
+      debug: var=netout
   
     - name: Sleeping the system to make network avaibale for build
       shell: sleep 120; /bin/ping -c2 dl.fedoraproject.org
