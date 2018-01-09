@@ -5,7 +5,7 @@
   tasks:
   
     - name: Sleeping the system to make network avaibale for build
-      shell: sleep 120; ping -c2 dl.fedoraproject.org
+      shell: sleep 120; /bin/ping -c2 dl.fedoraproject.org
       register: pingtest
     - name: Debug for network
       debug: var=pingtest
