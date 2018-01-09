@@ -3,6 +3,12 @@
   become: yes
 
   tasks:
+  
+    - name: Sleeping the system to make network avaibale for build
+      shell: sleep 120; ping -c2 dl.fedoraproject.org
+      register: pingtest
+    - name: Debug for network
+      debug: var=pingtest
 
     - name: add epel repository
       shell: rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
