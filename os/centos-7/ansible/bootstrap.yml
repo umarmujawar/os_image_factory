@@ -4,11 +4,17 @@
 
   tasks:
     - name: Ifconfig output
-      shell: ifconfig -a; ping -c2 google.com
+      shell: ifconfig -a; ping -c2 localhost
       register: netout
       
     - name: Debug
       debug: var=netout
+      
+    - name: Restart network
+      comamnd: systemctl restart network
+      register: check
+    - name: Debug
+      debug: var=check
   
     - name: Sleeping the system to make network avaibale for build
       shell: sleep 30; ping -c2 google.com; yum install -y epel-release
