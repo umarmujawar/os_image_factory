@@ -4,14 +4,14 @@
 
   tasks:
     - name: Ifconfig output
-      shell: ifconfig -a; ping -c2 localhost
+      shell: ifconfig -a; ping -c2 localhost; cat /etc/resolv.conf
       register: netout
       
     - name: Debug
       debug: var=netout
       
     - name: Restart network
-      comamnd: systemctl restart network
+      shell: systemctl restart network; ifconfig -a
       register: check
     - name: Debug
       debug: var=check
