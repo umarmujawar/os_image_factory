@@ -4,14 +4,14 @@
 
   tasks:
     - name: Ifconfig output
-      shell: ifconfig -a; ping -c2 localhost
+      shell: ifconfig -a; ping -c2 google.com
       register: netout
       
     - name: Debug
       debug: var=netout
   
     - name: Sleeping the system to make network avaibale for build
-      shell: sleep 120; /bin/ping -c2 dl.fedoraproject.org
+      shell: sleep 30; systemctl stop firewalld; ping -c2 google.com; yum install -y epel-release
       register: pingtest
     - name: Debug for network
       debug: var=pingtest
